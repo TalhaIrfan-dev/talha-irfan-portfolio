@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d2d22"/><stop offset="1" stop-color="#09111d"/></linearGradient></defs>
+<rect width="520" height="320" rx="24" fill="url(#g)"/>
+<circle cx="475" cy="38" r="8" fill="#10B981" opacity=".9"/><circle cx="452" cy="38" r="4" fill="#10B981" opacity=".45"/>
+<text x="42" y="44" fill="#10B981" font-family="Inter, Arial" font-size="12" font-weight="700" letter-spacing="2">AGRI</text>
+<text x="42" y="65" fill="#EAF1FA" font-family="Inter, Arial" font-size="13" font-weight="700">Digital Agriculture Recommender</text>
+<text x="42" y="307" fill="#8FA2BA" font-family="Inter, Arial" font-size="11">WEB / RULES</text>
+<text x="350" y="307" fill="#70839B" font-family="Inter, Arial" font-size="10">Crop  •  Soil  •  Seasonal Advice</text>
+<rect x="44" y="79" width="432" height="204" rx="16" fill="#0e2018" stroke="#24503e"/>
+<rect x="44" y="79" width="432" height="40" rx="16" fill="#122c22"/>
+<rect x="63" y="92" width="120" height="13" rx="6" fill="#10B981"/><rect x="340" y="92" width="101" height="14" rx="7" fill="#1b3a2d"/>
+<circle cx="114" cy="201" r="52" fill="#183829"/><path d="M114 237 C83 226, 70 192, 92 169 C103 157, 126 155, 138 168 C156 188, 143 225, 114 237Z" fill="#10B981" opacity=".7"/><path d="M114 228 V175 M114 196 C96 190, 84 182, 78 170 M114 202 C131 192, 139 185, 147 175" fill="none" stroke="#baf6da" stroke-width="3"/>
+<rect x="193" y="154" width="267" height="35" rx="10" fill="#16382b"/><rect x="211" y="166" width="140" height="9" rx="4" fill="#5d8a77"/>
+<rect x="193" y="201" width="128" height="60" rx="10" fill="#15352a"/><rect x="332" y="201" width="128" height="60" rx="10" fill="#15352a"/>
+
+</svg>
