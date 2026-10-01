@@ -270,9 +270,44 @@
     document.body.classList.remove('modal-open');
   }
 
-  function openCertificate() {
+  const certificateData = {
+    arch: {
+      title: 'Arch Technologies — C++ Internship',
+      image: 'assets/certificates/arch-technologies-cpp-internship.png',
+      caption: 'C++ Programming Internship and Training Program · 1 Feb 2026 — 25 Mar 2026 · 8 Weeks'
+    },
+    genai: {
+      title: 'Generative AI Application Developer',
+      image: 'assets/certificates/generative-ai-application-developer-preview.png',
+      open: 'assets/certificates/generative-ai-application-developer.pdf',
+      caption: 'NCEAC–HEC Generative AI Training Cohort 3 · Mar–May 2026 · Top Performer Awarded'
+    },
+    aspire: {
+      title: '2026 Aspire Leaders Program',
+      image: 'assets/certificates/aspire-leaders-program-2026-preview.png',
+      open: 'assets/certificates/aspire-leaders-program-2026.pdf',
+      caption: 'Aspire Institute · July 2026 · 40 hours of coursework'
+    }
+  };
+
+  function openCertificate(certKey = 'arch') {
     const modal = $('#certificateModal');
-    if (!modal) return;
+    const data = certificateData[certKey] || certificateData.arch;
+    if (!modal || !data) return;
+
+    const image = $('#certificateImage');
+    const title = $('#certificateTitle');
+    const caption = $('#certificateCaption');
+    const openLink = $('#certificateOpenLink');
+
+    if (title) title.textContent = data.title;
+    if (image) {
+      image.src = data.image;
+      image.alt = `${data.title} certificate`;
+    }
+    if (caption) caption.textContent = data.caption;
+    if (openLink) openLink.href = data.open || data.image;
+
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
@@ -316,62 +351,15 @@
     const scroller = $('#certificateScroller');
     if (!scroller) return;
 
-    // Native touch scrolling works automatically. These additions make
-    // mouse-wheel and click-drag interactions feel natural on desktop.
+    // Keep certificate links as normal HTML links so they work reliably
+    // in Live Server, localhost, and static hosting.
     scroller.addEventListener('wheel', event => {
       if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
       const max = scroller.scrollWidth - scroller.clientWidth;
       if (max <= 0) return;
-      const atStart = scroller.scrollLeft <= 0;
-      const atEnd = scroller.scrollLeft >= max - 1;
-      const movingRight = event.deltaY > 0;
-      if ((movingRight && atEnd) || (!movingRight && atStart)) return;
       event.preventDefault();
       scroller.scrollLeft += event.deltaY;
     }, { passive: false });
-
-    let dragging = false;
-    let startX = 0;
-    let startScroll = 0;
-    let moved = false;
-
-    scroller.addEventListener('pointerdown', event => {
-      if (event.pointerType === 'touch') return;
-      dragging = true;
-      moved = false;
-      startX = event.clientX;
-      startScroll = scroller.scrollLeft;
-      scroller.setPointerCapture?.(event.pointerId);
-      scroller.classList.add('dragging');
-    });
-
-    scroller.addEventListener('pointermove', event => {
-      if (!dragging) return;
-      const dx = event.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      scroller.scrollLeft = startScroll - dx;
-    });
-
-    const stopDrag = event => {
-      if (!dragging) return;
-      dragging = false;
-      scroller.classList.remove('dragging');
-      if (event && scroller.hasPointerCapture?.(event.pointerId)) {
-        scroller.releasePointerCapture(event.pointerId);
-      }
-    };
-
-    scroller.addEventListener('pointerup', stopDrag);
-    scroller.addEventListener('pointercancel', stopDrag);
-    scroller.addEventListener('mouseleave', () => { if (dragging) stopDrag(); });
-
-    // Keep click-to-open certificate buttons usable after a drag.
-    scroller.addEventListener('click', event => {
-      if (!moved) return;
-      event.preventDefault();
-      event.stopPropagation();
-      moved = false;
-    }, true);
 
     scroller.addEventListener('keydown', event => {
       if (event.key === 'ArrowRight') {
@@ -380,12 +368,6 @@
       } else if (event.key === 'ArrowLeft') {
         event.preventDefault();
         scroller.scrollBy({ left: -230, behavior: 'smooth' });
-      } else if (event.key === 'Home') {
-        event.preventDefault();
-        scroller.scrollTo({ left: 0, behavior: 'smooth' });
-      } else if (event.key === 'End') {
-        event.preventDefault();
-        scroller.scrollTo({ left: scroller.scrollWidth, behavior: 'smooth' });
       }
     });
   }
@@ -426,8 +408,7 @@
       if (card?.dataset.project) openProjectModal(card.dataset.project);
     }));
     $$('[data-close-modal]').forEach(el => el.addEventListener('click', closeProjectModal));
-    $('#certificateTrigger')?.addEventListener('click', openCertificate);
-    $('.cert-click')?.addEventListener('click', openCertificate);
+    $('#certificateTrigger')?.addEventListener('click', () => openCertificate('arch'));
     $$('[data-close-certificate]').forEach(el => el.addEventListener('click', closeCertificate));
     document.addEventListener('keydown', event => {
       if (event.key !== 'Escape') return;

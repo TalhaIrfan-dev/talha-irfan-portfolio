@@ -330,6 +330,9 @@ body[data-theme="amber"] h1 span,body[data-theme="light-amber"] h1 span { color:
 .cert-logo.blue { background:#dceafe; color:#2563EB; }.cert-logo.violet { background:#eadcff; color:#7C3AED; }.cert-logo.green { background:#d8f8ea; color:#059669; }.cert-logo.rose { background:#fde0e8; color:#E11D48; }.cert-logo.amber { background:#fff0cf; color:#D97706; }
 .cert-card small { display:block; color:var(--muted); font-size:.54rem; }.cert-card h4 { margin:6px 0 0; font:600 .77rem/1.2 "Space Grotesk",sans-serif; }.cert-card > button,.cert-card > a { margin-top:auto; align-self:start; color:var(--accent); background:transparent; border:0; padding:0; font-size:.59rem; font-weight:700; cursor:pointer; }
 .cert-click { cursor:pointer; }
+.cert-link { text-decoration:none; color:inherit; cursor:pointer; transition:.2s; }
+.cert-link:hover { border-color:var(--accent); transform:translateY(-3px); }
+.cert-link .cert-view { margin-top:auto; align-self:start; color:var(--accent); font-size:.59rem; font-weight:700; }
 
 .contact-section { position:relative; overflow:hidden; padding:110px 0 95px; background:var(--bg-2); }
 .contact-glow { position:absolute; width:620px; height:620px; right:-240px; top:-220px; border-radius:50%; background:radial-gradient(circle,color-mix(in srgb,var(--accent-3) 18%,transparent),transparent 68%); filter:blur(24px); }
@@ -402,3 +405,7 @@ body[data-theme="amber"] h1 span,body[data-theme="light-amber"] h1 span { color:
   .projects-grid{grid-template-columns:1fr}.project-content p{min-height:auto}.experience-card{grid-template-columns:1fr;gap:14px}.exp-date{align-items:flex-start;flex-direction:row}.exp-brand{max-width:160px}.certificate-trigger{grid-column:auto;justify-self:start}.education-card,.cert-showcase{padding:20px}.cert-card{flex-basis:205px}.contact-shell{padding:24px 18px}.contact-copy h2{font-size:2.5rem}.contact-visual{min-height:250px}.terminal-window{transform:none}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:5px}.modal-grid{grid-template-columns:1fr}.modal-media{min-height:unset}.modal-info{padding:24px}.certificate-modal-inner{padding:28px 18px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}.project-card,.btn,.skill-node,.contact-item{transition:none}.terminal-status + .cursor{animation:none}}
+
+/* Certificate modal action for local PDF assets */
+.certificate-open-link { display:inline-flex; align-items:center; justify-content:center; margin-top:14px; padding:10px 14px; border:1px solid var(--line-strong); border-radius:11px; color:var(--text); background:transparent; font-size:.65rem; font-weight:700; transition:.2s; }
+.certificate-open-link:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
